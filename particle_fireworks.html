@@ -124,6 +124,7 @@ class Trail extends Particle {
 	}
 	
 	update(time) {
+        // 调用父类（ Particle  类）的  update  方法，更新当前粒子的位置和状态。
 		super.update(time);
 		
 		// Add a new child on every frame
@@ -164,7 +165,8 @@ class Rocket extends Trail {
 		super(childFactory, position, velocity);
 		
 		this.explosionFactory = explosionFactory;
-		this.lifetime = 10;
+		this.lifetime = 5;
+        // this.maxHeight = window.innerHeight * 0.9; // 设置窗口最大高度的90%
 	}
 	
 	update(time) {
@@ -172,6 +174,14 @@ class Rocket extends Trail {
 			this.explosionFactory(this);
 			this.lifetime = 0;
 		}
+
+        // // 检查火箭位置是否超过窗口最大高度
+        // if (this.position.y > this.maxHeight) {
+        //     this.position.y = this.maxHeight * 0.9; // 将火箭位置限制为窗口最大高度
+        //     this.velocity.x = 0; // 停止水平移动
+        //     this.velocity.y = 0; // 停止垂直移动
+        //     this.isAlive = false; // 标记火箭已经结束运动
+        // }
 		
 		super.update(time);
 	}
@@ -239,13 +249,25 @@ const getExplosionFactory = function(baseHue) {
 		}
 	};
 };
- 
+// addRocket  函数用于添加火箭到  rockets  数组中，
+// 并根据一些随机参数创建火箭实例。在这个函数中，火箭的位置、速度和生命周期等属性是随机生成的。
 const addRocket = function() {
+    // 获取一个信任粒子工厂，用于创建火箭的粒子效果。 
 	const trustParticleFactory = getTrustParticleFactory();
+    // 函数获取一个爆炸效果工厂，用于创建火箭爆炸效果。
 	const explosionFactory = getExplosionFactory(Math.random() * 360);
-	
+	// 随机生成一个位置，横坐标在 canvas 宽度范围内，纵坐标在 canvas 高度范围内。 
 	const position = new Vector2(Math.random() * canvas.width, canvas.height);
-	const thrust = window.innerHeight * .85;
+    
+    
+    // 1.  Math.random()  会生成一个介于 0 到 1 之间的随机数。 
+    // 2.  (Math.random() - 0.5)  会生成一个介于 -0.5 到 0.5 之间的随机数，用于控制角度的偏移。 
+    // 3.  Math.PI / -2  表示 -90 度，即垂直向上的角度。 
+    // 4.  (Math.random() - 0.5) * Math.PI / 8  会生成一个介于 -π/16 到 π/16 之间的随机角度偏移。 
+    // 5. 将这个随机角度偏移加到 -90 度上，得到了火箭的发射角度  angle 。 
+    // 6.  Math.cos(angle)  和  Math.sin(angle)  计算了发射角度对应的单位向量，用于确定火箭的速度方向。 
+    // 7. 将单位向量乘以推力  thrust ，得到了火箭的速度向量  velocity 。 
+	const thrust = window.innerHeight * .75;
 	const angle = Math.PI / -2 + (Math.random() - .5) * Math.PI / 8;
 	const velocity = new Vector2(Math.cos(angle) * thrust, Math.sin(angle) * thrust);
 	const lifetime = 3;
@@ -279,12 +301,15 @@ document.body.appendChild(canvas);
  
 window.onresize = resize;
 resize();
- 
+// 这行代码用于每隔250毫秒调用一次  addRocket  函数，从而实现定时添加火箭的效果。
+// 通过这行代码，您可以控制火箭的发射频率，使其以一定的间隔不断添加新的火箭。 
 setInterval(addRocket, 250);
 render();
 </script>
-	
-<div class="div1"></div>
+
+<!-- 控制花朵绽放 -->
+
+<!-- <div class="div1"></div>
 <div class="div2"></div>
 <div class="div3"></div>
 <div class="div4"></div>
@@ -475,7 +500,7 @@ render();
             from{transform: rotate(-45deg);}
             to{transform: rotate(-25deg);}
         }
-    </style>
+    </style> -->
  
 </body>
 </html>
