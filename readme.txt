@@ -1,2 +1,5 @@
-1、 HTML点击按钮button跳转页面的几种实现方法
-https://yuanyuan.blog.csdn.net/article/details/103165560?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-103165560-blog-79172315.pc_relevant_3mothn_strategy_and_data_recovery&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-103165560-blog-79172315.pc_relevant_3mothn_strategy_and_data_recovery&utm_relevant_index=2
+
+
+// 这里是黄建宇的个人网站
+
+
