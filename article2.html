@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编辑文章 - 文章标题 1</title>
+    <!-- 引入 SimpleMDE CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>编辑文章 - 文章标题 1</h1>
+    <nav>
+        <a href="blog.html">返回博客</a>
+    </nav>
+</header>
+
+<section>
+    <textarea id="markdown-editor"></textarea>
+    <button id="save-article">保存文章</button>
+</section>
+
+<footer>
+    <p>&copy; 2024 黄建宇</p>
+</footer>
+
+<!-- 引入 SimpleMDE JS -->
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+<script>
+    // 初始化 Markdown 编辑器
+    var simplemde = new SimpleMDE({ element: document.getElementById("markdown-editor") });
+
+    // 保存文章内容（示例: 保存到本地存储）
+    document.getElementById("save-article").addEventListener("click", function() {
+        var content = simplemde.value();
+        localStorage.setItem("article1Content", content);
+        alert("文章已保存！");
+    });
+
+    // 加载保存的内容
+    document.addEventListener("DOMContentLoaded", function() {
+        var savedContent = localStorage.getItem("article1Content");
+        if (savedContent) {
+            simplemde.value(savedContent);
+        }
+    });
+</script>
+
+</body>
+</html>
