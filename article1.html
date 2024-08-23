@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文章标题 1 - 黄建宇的博客</title>
+    <title>文章 - 文章标题 1</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #f7f7f7;
         }
         header {
             background-color: #333;
@@ -21,27 +21,42 @@
             padding: 20px;
             margin: 20px;
             background-color: #fff;
+            border-radius: 8px;
         }
         footer {
             background-color: #333;
             color: #fff;
             text-align: center;
             padding: 10px;
-            position: relative;
+            margin-top: 40px;
+        }
+        .markdown-content {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fff;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>文章标题 1</h1>
+    <h1>文章 - 文章标题 1</h1>
     <nav>
         <a href="blog.html">返回博客</a>
     </nav>
 </header>
 
 <section>
-    <p>这里是你写的文章的内容...</p>
+    <div class="markdown-content">
+        <!-- 在这里插入已转换的Markdown内容 -->
+        <h1>欢迎阅读文章</h1>
+        <p>在这里开始阅读您的文章...</p>
+        <h2>章节1</h2>
+        <p>这里是文章的第一部分内容。</p>
+        <h2>章节2</h2>
+        <p>这里是文章的第二部分内容。</p>
+    </div>
 </section>
 
 <footer>
