@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>编辑文章 - 文章标题 1</title>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- 引入 SimpleMDE CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,10 +32,15 @@
             padding: 10px;
             margin-top: 40px;
         }
-        #no-access {
-            color: red;
-            text-align: center;
-            margin-top: 20px;
+        #fullscreen-toggle {
+            float: right;
+            background-color: #444;
+            color: #fff;
+            padding: 5px 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin-top: -10px;
         }
     </style>
 </head>
@@ -44,54 +50,55 @@
     <h1>编辑文章 - 文章标题 1</h1>
     <nav>
         <a href="blog.html">返回博客</a>
+        <button id="fullscreen-toggle">全屏模式</button>
     </nav>
 </header>
 
-<section id="editor-section" style="display: none;">
-    <textarea id="rich-editor"></textarea>
-    <button id="save-article">保存文章</button>
-</section>
+<section>
+    <textarea id="markdown-editor">
+# 欢迎使用Markdown编辑器
 
-<section id="no-access" style="display: none;">
-    <p>您无权访问此页面。</p>
+在这里开始撰写您的文章...
+
+## 章节1
+这里是文章的第一部分内容。
+
+## 章节2
+这里是文章的第二部分内容。
+    </textarea>
+    <button id="save-article">保存文章</button>
 </section>
 
 <footer>
     <p>&copy; 2024 黄建宇</p>
 </footer>
 
+<!-- 引入 SimpleMDE JS -->
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 <script>
-    // 模拟权限控制
-    var isAdmin = false; // 假设此值通过后端身份验证系统传递
+    // 初始化 Markdown 编辑器
+    var simplemde = new SimpleMDE({ element: document.getElementById("markdown-editor") });
 
-    document.addEventListener("DOMContentLoaded", function() {
-        if (isAdmin) {
-            document.getElementById("editor-section").style.display = "block";
-            tinymce.init({
-                selector: '#rich-editor',
-                height: 500,
-                plugins: 'link image code',
-                toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | code',
-                setup: function (editor) {
-                    editor.on('init', function () {
-                        var savedContent = localStorage.getItem("article1Content");
-                        if (savedContent) {
-                            editor.setContent(savedContent);
-                        }
-                    });
-                }
-            });
-        } else {
-            document.getElementById("no-access").style.display = "block";
-        }
+    // 自动保存功能
+    setInterval(function() {
+        var content = simplemde.value();
+        localStorage.setItem("article1Content", content);
+    }, 5000); // 每5秒自动保存一次
+
+    // 手动保存按钮
+    document.getElementById("save-article").addEventListener("click", function() {
+        var content = simplemde.value();
+        localStorage.setItem("article1Content", content);
+        alert("文章已保存！");
     });
 
-    // 保存文章内容
-    document.getElementById("save-article").addEventListener("click", function() {
-        if (isAdmin) {
-            var content = tinymce.get("rich-editor").getContent();
-            localStorage.setItem("article1Content", content);
-            alert("文章已保存！");
+    // 全屏模式切换
+    document.getElementById("fullscreen-toggle").addEventListener("click", function() {
+        var section = document.querySelector("section");
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        } else {
+            section.requestFullscreen();
         }
     });
 </script>
