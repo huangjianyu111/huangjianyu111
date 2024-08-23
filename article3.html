@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编辑文章 - 文章标题 1</title>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: 40px;
+        }
+        #no-access {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>编辑文章 - 文章标题 1</h1>
+    <nav>
+        <a href="blog.html">返回博客</a>
+    </nav>
+</header>
+
+<section id="editor-section" style="display: none;">
+    <textarea id="rich-editor"></textarea>
+    <button id="save-article">保存文章</button>
+</section>
+
+<section id="no-access" style="display: none;">
+    <p>您无权访问此页面。</p>
+</section>
+
+<footer>
+    <p>&copy; 2024 黄建宇</p>
+</footer>
+
+<script>
+    // 模拟权限控制
+    var isAdmin = false; // 假设此值通过后端身份验证系统传递
+
+    document.addEventListener("DOMContentLoaded", function() {
+        if (isAdmin) {
+            document.getElementById("editor-section").style.display = "block";
+            tinymce.init({
+                selector: '#rich-editor',
+                height: 500,
+                plugins: 'link image code',
+                toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | code',
+                setup: function (editor) {
+                    editor.on('init', function () {
+                        var savedContent = localStorage.getItem("article1Content");
+                        if (savedContent) {
+                            editor.setContent(savedContent);
+                        }
+                    });
+                }
+            });
+        } else {
+            document.getElementById("no-access").style.display = "block";
+        }
+    });
+
+    // 保存文章内容
+    document.getElementById("save-article").addEventListener("click", function() {
+        if (isAdmin) {
+            var content = tinymce.get("rich-editor").getContent();
+            localStorage.setItem("article1Content", content);
+            alert("文章已保存！");
+        }
+    });
+</script>
+
+</body>
+</html>
