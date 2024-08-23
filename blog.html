@@ -1,36 +1,15 @@
-
-
-
-<!-- <p>Hello 大家好</p>
-<p>我是黄建宇，这是我的个人网站。 </p>
-<p>很高兴你来到这里, 你可以在以下的网站找到我</p>
-
-<ul>
-  <li> <a href="https://www.zhihu.com/people/xing-kong-zhi-chen-27/collections">我的知乎</a> </li>
-  <li> <a href="">我的个人网站</a> </li>
-</ul>
-
-
-
-<button onclick="window.location.href='particle_fireworks.html'" type="button" id="add">粒子烟花</button> -->
-
-<!-- <input type="button" onclick='location.href=("index.aspx")' />//在本页面打开
-<input type="button" onclick='window.open("bedzhao.aspx")' />//打开新页面 -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>黄建宇 - 个人网站</title>
+    <title>黄建宇的博客</title>
     <style>
-        /* 添加您的 CSS 样式 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #4e4545;
+            background-color: #f7f7f7;
         }
         header {
             background-color: #333;
@@ -52,64 +31,70 @@
         section {
             padding: 20px;
             margin: 20px;
-            background-color: #cac0c0;
+            background-color: #fff;
+            border-radius: 8px;
+        }
+        h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 15px;
+        }
+        li a {
+            color: #0073e6;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        li a:hover {
+            text-decoration: underline;
         }
         footer {
             background-color: #333;
             color: #fff;
             text-align: center;
             padding: 10px;
-            position: relative; /* 将定位方式改为相对定位 */
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>欢迎来到我的个人网站</h1>
+    <h1>黄建宇的博客</h1>
 </header>
 
 <nav>
-    <a href="#about">关于我</a>
+    <a href="index.html">首页</a>
+    <a href="blog.html">博客</a>
     <a href="#portfolio">作品集</a>
     <a href="#contact">联系我</a>
-    <a href="#others">其他</a>
 </nav>
 
-<section id="about">
-    <h2>关于我</h2>
-    <p>在这里写一些关于你自己的内容...</p>
-</section>
-
-<section id="portfolio">
-    <h2>作品集</h2>
-    <p>在这里展示您的作品或项目...</p>
+<section>
+    <h2>博客目录</h2>
     <ul>
-      <!-- <li> <a href="https://www.zhihu.com/people/xing-kong-zhi-chen-27/collections">我的知乎</a> </li> -->
-      <li> <a href="https://blog.csdn.net/universe_search?spm=1000.2115.3001.5343">我的csdn</a> </li>
+        <li>
+            <a href="article1.html">文章标题 1</a>
+            <p>文章 1 的简短描述...</p>
+        </li>
+        <li>
+            <a href="article2.html">文章标题 2</a>
+            <p>文章 2 的简短描述...</p>
+        </li>
+        <!-- 在这里添加更多的文章链接 -->
+        <li>
+            <a href="article3.html">文章标题 3</a>
+            <p>文章 3 的简短描述...</p>
+        </li>
     </ul>
-</section>
-
-<section id="contact">
-    <h2>联系我</h2>
-    <p>您可以通过以下方式联系我：</p>
-    <ul>
-        <li>Email: </li>
-        <li>电话：</li>
-    </ul>
-</section>
-
-<section id="others">
-  <h2>其他</h2>
-  <p>需要展示的其他东西：</p>
-  <button onclick="window.location.href='particle_fireworks.html'" type="button" id="add">粒子烟花</button>
-
-  <!--添加空行-->
-  <br/>
 </section>
 
 <footer>
-    <p>&copy; huangjianyu 黄建宇</p>
+    <p>&copy; 2024 黄建宇</p>
 </footer>
 
 </body>
